@@ -17,7 +17,7 @@ cd /tmp
 git clone --recurse-submodules https://github.com/jbauers/docker-minica
 cd docker-minica
 
-./run.sh example.org
+./run.sh example.org,'*.example.org'
 ```
 
 Please don't create a `Dockerfile`, `run.sh` does that. Adjust `run.sh` if you want different
