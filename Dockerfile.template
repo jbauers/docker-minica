@@ -1,0 +1,16 @@
+# Builder
+FROM golang:alpine as builder
+LABEL stage=intermediate
+
+WORKDIR /go/src/minica
+COPY minica/main.go .
+RUN go get && \
+    CGO_ENABLED=0 go build -o /go/bin/minica
+
+# Runner
+FROM scratch
+
+COPY --from=builder /go/bin/minica /
+ENTRYPOINT ["/minica","--domains"]
+
+WORKDIR /out
